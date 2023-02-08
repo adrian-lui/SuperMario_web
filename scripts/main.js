@@ -418,7 +418,6 @@ const garbageCollecting = function() {
         }
         garbageCollector[key] = []
     }
-    garbageCollector[key] = [];
 }
 
 // Time handler
