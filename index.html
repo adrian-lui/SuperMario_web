@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="startMenu">
+        <div class="overlay-content-container">
+            <div class="overlay-content-text">Grit Bros</div>
+            <div class="overlay-button" id="startGame">Start Game</div>
+            <div class="overlay-button" id="levelCreator">Level Creator</div>
+            <div class="overlay-button" id="settings">Settings</div>
+        </div>
+    </div>
+    <div id="gameEnd" style="display:none;">
+        <div class="" id="gameEndMessage"></div>
+    </div>
+    <div id="overlay" style="display:none;">
+        <div class="overlay-content-container">
+            <div class="overlay-content-text">Grit Bros</div>
+            <div class="overlay-button" id="resume">Resume</div>
+            <div class="overlay-button" id="restart">Restart</div>
+            <div class="overlay-option" >Sound: <input type="checkbox" id="toggleSound"></div>
+        </div>
+    </div>
+    <div id="topBar"></div>
+    <div id="mainContainer"></div>
+    <script type="module">
+        import {gameSetup, init} from "./scripts/main.js"
+        init()
+    </script>
+</body>
+</html>

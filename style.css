@@ -1,0 +1,174 @@
+body {
+    min-height: 700px;
+    overflow: none;
+}
+
+.character {
+    position: absolute;
+    display: inline-block;
+    z-index: 50;
+}
+
+.bullet {
+    position: absolute;
+    display: inline-block;
+    z-index: 20;
+    border-radius: 50%;
+}
+
+.tracker {
+    position: absolute;
+    display: inline-block;
+    background-color: purple;
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.obstacle {
+    position: absolute;
+    display: inline-block;
+    z-index: 1;
+}
+
+.monster {
+    position: absolute;
+    display: inline-block;
+    z-index: 20;
+}
+
+.collectible {
+    position: absolute;
+    display: inline-block;
+    z-index: 10;
+}
+
+.topBarElement {
+    margin-top: 15px;
+    display: inline-block;
+    text-align: center;
+    font-size: 3vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    text-shadow: 0px 5px 3px black;
+}
+
+.topElementScoreWidth {
+    width: 40%;
+}
+
+.topElementWidth {
+    width: 20%;
+}
+
+.topElementButton {
+    transform: scale(2);
+    margin-left: 2%;
+}
+
+.topElementLabel {
+    padding-left: 5%;
+}
+
+#topBar {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+}
+
+#mainContainer {
+    background-size: contain;
+    background-repeat: repeat-x;
+    min-height: 700px;
+}
+
+#gameEnd {
+    position: fixed; /* Sit on top of the page content */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 500;
+    justify-content: center;
+}
+
+#game-end-container {
+    margin: auto;
+    padding: 30% 45%;
+    opacity: 1.0;
+}
+
+#startMenu {
+    position: fixed; /* Sit on top of the page content */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.2); /* Black background with opacity */
+    z-index: 1000; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 1000; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+.overlay-content-container {
+    width: 50%;
+    height: 34%;
+    margin: 12.5% auto;
+    padding: 8% 0;
+    background: white;
+    border-radius: 30px;
+}
+
+.overlay-content-text {
+    width:90%;
+    margin:auto;
+    font-weight:bold;
+    font-size: 220%;
+    color: black;
+    margin-top:1%;
+    text-align: center;
+}
+
+.overlay-button {
+    width: 65%;
+    margin: 35px auto;
+    padding: 10px 16px;
+    background-color: blue;
+    border-radius: 25px;
+    text-align:center;
+    color: white;
+    font-size: 170%;
+}
+
+.overlay-option {
+    width: 65%;
+    margin: 35px auto;
+    padding: 10px 16px;
+    color: black;
+    text-align: left;
+    font-size: 170%;
+}
+
+input[type=checkbox] {
+    width: 35px;
+    height: 35px;
+}
+
+.hidden {
+    display: none;
+}

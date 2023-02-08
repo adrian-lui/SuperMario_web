@@ -1,0 +1,23 @@
+- Killing monster by jumping on top gives a small bounce up (negative yforce)
+- Killing monster either "explodes" with a gif
+- Monster can be unkillable, but will hide in shell (like turtle) and if collided with shoots away
+- collectables fade in from object with content
+- Collectable items
+    - Player character enhancment (grov largerx, shooting capability)
+    - Player invincible
+    - coins
+- Monster templates
+    - Pigs
+    - Turtles
+- Object ideas
+    - tramponine for greater yforce
+
+- fix gap/hole in main floor graphics
+
+Extras
+- Start menu
+- Difficulty level
+- limit fps to 60?
+
+Sources
+https://www.gameart2d.com/free-platformer-game-tileset.html
