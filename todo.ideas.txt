@@ -12,7 +12,8 @@
 - Object ideas
     - tramponine for greater yforce
 
-- fix gap/hole in main floor graphics
+- tile sets for level creator
+
 
 Extras
 - Start menu
@@ -20,4 +21,5 @@ Extras
 - limit fps to 60?
 
 Sources
+
 https://www.gameart2d.com/free-platformer-game-tileset.html

@@ -1,5 +1,6 @@
 import { objectRatio, allElems } from "./main.js";
-import { setCoins, setPoints } from "./topbar.js";
+import { sounds } from "./sounds.js"
+// import { topBar } from "./topbar.js";
 
 const mainContainer = document.getElementById("mainContainer");
 
@@ -99,20 +100,21 @@ export const createObstacle = function (
     case "lootbox":
       obstacle.elem.style.background = "url(./images/lootbox.png)";
       break;
-    case "platform":
+    case "crate":
       obstacle.elem.style.background = "url(./images/crate.png)";
       break;
-    case "bush":
-      obstacle.elem.style.background = "url(./images/crate.png)";
+    case "pipe":
+      obstacle.elem.style.background = "url(./images/pipe.png)";
       break;
     case "ground":
       obstacle.elem.style.background = "url(./images/ground.png)";
+      obstacle.elem.style.borderRadius = "8%";
       break;
     case "castle":
       obstacle.elem.style.background = "url(./images/moominhouse.png)";
-
+      break;
   }
-  //obstacle.elem.style.background = sprite;
+
   obstacle.elem.style.backgroundSize = "100% 100%";
   obstacle.elem.style.left = obstacle.xPos + "px";
   obstacle.elem.style.top = obstacle.yPos + "px";
@@ -224,20 +226,28 @@ ObjectClass.prototype.xDisplace = function () {
   this.elem.style.left = this.elem.offsetLeft + this.xSpeed + "px";
 };
 
-ObjectClass.prototype.contentHandler = function (allElems) {
+Obstacle.prototype.destroy = function () {
+  //fade out slowly
+  this.elem.classList.add("transparentObstacle");
+  this.elem.style.background = "url(./images/clownsplode.gif)";
+  this.elem.style.backgroundSize = "100% 100%";
+}
+
+function lootboxReaction(lootboxelem) {
+  lootboxelem.style.top = lootboxelem.offsetTop - 20 + "px";
+  setTimeout(() => {
+    lootboxelem.style.top = lootboxelem.offsetTop + 20 + "px";
+  }, 200);
+}
+
+
+ObjectClass.prototype.contentHandler = function (allElems, topBar) {
   if (!this.content) return;
   if (Number.isFinite(this.content)) {
     this.content--;
-    allElems["character"].coins++;
-    allElems["character"].points += 100;
-    setCoins(allElems["character"].coins.toString());
-    setPoints(allElems["character"].points.toString());
-    // move this.elem up 20 px for 0.2 seconds then move it back down
-    this.elem.style.top = this.elem.offsetTop - 20 + "px";
-    setTimeout(() => {
-      this.elem.style.top = this.elem.offsetTop + 20 + "px";
-    }, 200);
-    console.log(this.content)
+    topBar.addCoins();
+    topBar.setPoints(100);
+    lootboxReaction(this.elem);
     // display coin.gif above block for 0.5 seconds if block contains coin
 
     const coin = document.createElement("div");
@@ -255,16 +265,19 @@ ObjectClass.prototype.contentHandler = function (allElems) {
 
     // handle empty block after coin is empty
     if (!this.content) {
-
-
       this.elem.style.background = "url(./images/crate.png)";
       this.elem.style.backgroundSize = "100% 100%";
     }
 
+    sounds.playEffect("collect")
     return;
   }
   switch (this.content) {
     case "mushroom":
+      this.elem.style.background = "url(./images/crate.png)";
+      this.elem.style.backgroundSize = "100% 100%";
+      lootboxReaction(this.elem);
+      sounds.playEffect("mushroomOut")
       const thisCollectible = createCollectible(
         1,
         "mushroom",
@@ -335,7 +348,7 @@ ObjectClass.prototype.collision = function (obj) {
 };
 
 // size, content, yPos, xPos, destructible, color, xSpeed, ySpeed, gravity = true
-export const monsterTemplate = (mType, yPos, xPos, direction) => {
+export const monsterTemplate = (mType, yPos, xPos, direction, template = false) => {
   if (direction < 0) {
     direction = -1;
   } else {
@@ -347,12 +360,16 @@ export const monsterTemplate = (mType, yPos, xPos, direction) => {
   } else {
     direction = 1
   }
-
+  let gravity = true;
+  if (template) {
+    direction = 0;
+    gravity = false;
+  }
   switch (mType) {
     case "stinky":
-      return createMonster(1, 100, yPos, xPos, true, "url(./images/stinky.png)", direction * 2, 0, true)
+      return createMonster(1, 100, yPos, xPos, true, "url(./images/stinky.png)", direction * 2, 0, gravity)
     case "hattifnatt":
-      return createMonster(1.5, 100, yPos, xPos, true, "url(./images/hattifnatt.png)", direction * 2, 0, true)
+      return createMonster(1.5, 100, yPos, xPos, true, "url(./images/hattifnatt.png)", direction * 2, 0, gravity)
   }
   return false;
 }

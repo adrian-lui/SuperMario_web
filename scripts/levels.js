@@ -8,8 +8,8 @@ export function levelConstructor(levelData, objectRatio) {
     levelData["obstacle"].push([1, "", 1, 0, false, "white", window.innerHeight - objectRatio, 0.2])
     levelData["obstacle"].push([1, "", 1, levelData["levelWidth"], false, "white", window.innerHeight - objectRatio, 0.2])
     // add end game castle
-    const castleSize = 6
-    levelData["obstacle"].push([1, "lv2", 11 - castleSize, levelData["levelWidth"] - castleSize - 1, false, "castle", castleSize, castleSize])
+    // const castleSize = 6
+    levelData["obstacle"].push()
     // construct player
     // createPlayer()
 

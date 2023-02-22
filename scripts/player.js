@@ -4,24 +4,23 @@ import { Bullet } from "./objects.js"
 const mainContainer = document.getElementById("mainContainer")
 
 const Player = function () {
-    this.lives = 3
-    this.coins = 0
-    this.points = 0
     this.size = 1
     this.strength = 1
     this.invincible = 0
     this.xSpeed = 0
     this.ySpeed = 0
-    this.maxSpeed = 100
+    this.maxSpeed = 14
     this.jumping = true
+    this.player = true
     this.friction = true
     this.stayInScreen = true
     this.shootTimer = 0
     this.facing = "right"
     this.maxStrength = 3
-
+    this.acceleration = 4
     this.elem = document.createElement("div");
     this.elem.classList.add("character");
+    // this.currentLevel
 };
 
 Player.prototype.yForce = function (force) {
@@ -36,10 +35,14 @@ Player.prototype.xForce = function (force) {
 };
 
 Player.prototype.yDisplace = function () {
+    // this.elem.style.transform = `translate(0px, ${this.elem.offsetTop + this.ySpeed}px)`;
+    // this.elem.offsetTop = this.elem.offsetTop + this.ySpeed;
+    // console.log(this.ySpeed, this.elem.offsetTop)
     this.elem.style.top = this.elem.offsetTop + this.ySpeed + "px";
 };
 
 Player.prototype.xDisplace = function () {
+    // this.elem.style.transform = "translate(" + this.xSpeed + "px 0px)"; // this.elem.offsetLeft + this.xSpeed + "px";
     this.elem.style.left = this.elem.offsetLeft + this.xSpeed + "px";
 };
 
@@ -74,6 +77,7 @@ Player.prototype.changeStrength = function (direction) {
         case 3:
             this.size = 1.7;
             console.log("player can shoot");
+            this.elem.style.height = this.size * objectRatio + "px";
             this.elem.style.background = "url(./images/cowboymoomin.png)";
             this.elem.style.backgroundSize = "100% 100%"
 
@@ -83,7 +87,7 @@ Player.prototype.changeStrength = function (direction) {
     Player.prototype.shoot = function () {
         // import bullet class from object.js 
         // constructor: size, content, yPos, xPos, destructible, color, xSpeed, ySpeed, gravity?, friction?, stayInScreen?
-        const bullet = new Bullet(0.3, 0, 0, 0, true, "orange", 8, 0)
+        const bullet = new Bullet(0.3, 0, 0, 0, true, "orange", this.maxSpeed, 0)
         bullet.xSpeed = this.facing == "right" ? bullet.xSpeed : -bullet.xSpeed
         bullet.bounce = -14
         bullet.elem.style.backgroundColor = bullet.color

@@ -1,6 +1,12 @@
 body {
     min-height: 700px;
-    overflow: none;
+    overflow: hidden;
+}
+table {
+    width: 100%;
+}
+td {
+    width: 25%;
 }
 
 .character {
@@ -8,6 +14,8 @@ body {
     display: inline-block;
     z-index: 50;
 }
+
+
 
 .bullet {
     position: absolute;
@@ -28,6 +36,10 @@ body {
     position: absolute;
     display: inline-block;
     z-index: 1;
+    transition: opacity 2s;
+}
+.transparentObstacle {
+    opacity: 0;
 }
 
 .monster {
@@ -53,7 +65,7 @@ body {
 }
 
 .topElementScoreWidth {
-    width: 40%;
+    width: 20%;
 }
 
 .topElementWidth {
@@ -81,6 +93,21 @@ body {
     min-height: 700px;
 }
 
+.page-link {
+    cursor : pointer;
+    box-shadow : 0px 2px 2px black;
+    margin-top: 5px;
+    border-radius : 20%;
+    padding : 5px;
+}
+
+.page-link.active{
+    box-shadow : 0px 0px 0px black;
+    color: grey;
+}
+.page-link:hover{
+    box-shadow : 0px 1px 1px black;
+}
 #gameEnd {
     position: fixed; /* Sit on top of the page content */
     width: 100%; /* Full width (cover the whole page) */
@@ -90,6 +117,20 @@ body {
     right: 0;
     bottom: 0;
     z-index: 500;
+    background-color: rgba(47, 32, 146, 0.2); /* Black background with opacity */
+    justify-content: center;
+}
+
+#leaderboard {
+    position: fixed; /* Sit on top of the page content */
+    width: 100%; /* Full width (cover the whole page) */
+    height: auto; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 500;
+    background-color: rgba(47, 32, 146, 0.2); /* Black background with opacity */
     justify-content: center;
 }
 
@@ -112,7 +153,7 @@ body {
     cursor: pointer; /* Add a pointer on hover */
 }
 
-#overlay {
+.overlay {
     position: fixed; /* Sit on top of the page content */
     width: 100%; /* Full width (cover the whole page) */
     height: 100%; /* Full height (cover the whole page) */
@@ -122,12 +163,11 @@ body {
     bottom: 0;
     background-color: rgba(0,0,0,0.5); /* Black background with opacity */
     z-index: 1000; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
 }
 
 .overlay-content-container {
     width: 50%;
-    height: 34%;
+    height: auto;
     margin: 12.5% auto;
     padding: 8% 0;
     background: white;
@@ -153,6 +193,7 @@ body {
     text-align:center;
     color: white;
     font-size: 170%;
+    cursor: pointer; /* Add a pointer on hover */
 }
 
 .overlay-option {
@@ -171,4 +212,53 @@ input[type=checkbox] {
 
 .hidden {
     display: none;
+}
+
+.creatorDropdown {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 150%;
+    font: inherit;
+    vertical-align: baseline;
+    background: transparent;
+    color: white;
+    text-align: center;
+    text-shadow: 0px 5px 3px black;
+}
+
+
+.invincible {
+    opacity: 0.5;
+
+    animation: blink-animation 0.5s steps(5, start) infinite;
+    -webkit-animation: blink-animation 0.5s steps(5, start) infinite;
+  }
+  @keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
+  @-webkit-keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+
+}
+
+.leaderboard {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.2); /* Black background with opacity */
+    justify-content: center;
+}
+
+.py-1 {
+    padding: 1em 0px;
 }
